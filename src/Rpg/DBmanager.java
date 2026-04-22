@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class DBmanager {
-    private final String file_name = "fighters.json";
+    private final String file_name = "src/Rpg/fighters.json";
     private ObjectMapper mapper = new ObjectMapper();
     public void saveAll(HashMap<String, Fighter> storage){
         try{
