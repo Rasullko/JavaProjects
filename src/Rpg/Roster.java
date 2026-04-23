@@ -26,8 +26,10 @@ public class Roster {
         int defence = sc.nextInt();
         System.out.println("Enter his speed(out of 10): ");
         int speed = sc.nextInt();
+        System.out.println("Enter his luck(out of 10): ");
+        int luck = sc.nextInt();
         sc.nextLine();
-        Fighter newFighter = new Fighter(name, defence, atk, health, speed);
+        Fighter newFighter = new Fighter(name, defence, atk, health, speed, luck);
         list.put(name.toLowerCase(), newFighter);
         dbService.saveAll(list);
         return newFighter;

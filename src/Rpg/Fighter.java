@@ -8,19 +8,22 @@ public class Fighter {
     private int attack;
     private int health;
     private int speed;
-    Random dodge = new Random();
+    private int luck;
+    Random chance = new Random();
     public int getDefense(){ return this.defense; }
     public int getHealth(){ return this.health; }
     public boolean isAlive(){ return this.health>0; }
     public String getName(){ return this.name; }
     public int getAttack(){ return this.attack; }
     public int getSpeed(){ return this.speed; }
-    public Fighter(String name, int defense, int attack, int health, int speed){
+    public int getLuck(){ return this.luck; }
+    public Fighter(String name, int defense, int attack, int health, int speed, int luck){
         this.name = name;
         this.defense = defense;
         this.attack = attack;
         this.health = health;
         this.speed = speed;
+        this.luck = luck;
     }
     public Fighter(){};
     public void sleep(int ms){
@@ -33,17 +36,20 @@ public class Fighter {
     }
     public void takeDamage(int damage) {
         int actualDamage = damage - (this.defense / 2);
-        int dodgeAttack = dodge.nextInt(10);
+        int dodgeAttack = chance.nextInt(101);
         dodgeAttack *= speed;
-        if (actualDamage < 0 || dodgeAttack >= 50) actualDamage = 0;
+        int critChance = chance.nextInt(101);
+        critChance *= luck;
+        if (actualDamage < 0 || dodgeAttack >= 380) actualDamage = 0;
+        else if(critChance >= 400) actualDamage *=2;
         this.health -= actualDamage;
         if (this.health < 0) this.health = 0;
         if (actualDamage == 0) {
             System.out.println(this.name + " has taken no damage from attack. His health is still " + this.health);
-            sleep(1000);
+            sleep(1500);
         } else {
             System.out.println(this.name + " has taken " + actualDamage + " of damage. His health is now " + health);
-            sleep(1000);
+            sleep(1500);
         }
     }
 
