@@ -21,6 +21,7 @@ public class DBmanager {
             return mapper.readValue(file, mapper.getTypeFactory().constructMapType(HashMap.class, String.class, Fighter.class));
         }
         catch(IOException e){
+            e.printStackTrace();
             return new HashMap<>();
         }
     }

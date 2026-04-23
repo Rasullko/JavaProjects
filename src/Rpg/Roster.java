@@ -8,7 +8,6 @@ public class Roster {
        this.list = dbService.loadAll();
     }
     public Fighter getOrCreate(Scanner sc){
-        System.out.println("Choose your fighter: ");
         for(HashMap.Entry<String, Fighter> i : list.entrySet()){
             System.out.println(i.getKey());
         }
@@ -19,18 +18,19 @@ public class Roster {
             return list.get(name);
         }
         System.out.println("It is a new fighter! Put his characteristics here");
-        System.out.println("What is his strength: ");
+        System.out.println("What is his strength(out of 30: ");
         int atk = sc.nextInt();
-        System.out.println("Enter his health: ");
+        System.out.println("Enter his health(out of 200): ");
         int health = sc.nextInt();
-        System.out.println("Enter his defence: ");
+        System.out.println("Enter his defence(out of 20): ");
         int defence = sc.nextInt();
+        System.out.println("Enter his speed(out of 10): ");
+        int speed = sc.nextInt();
         sc.nextLine();
-        Fighter newFighter = new Fighter(name, defence, atk, health);
+        Fighter newFighter = new Fighter(name, defence, atk, health, speed);
         list.put(name.toLowerCase(), newFighter);
         dbService.saveAll(list);
         return newFighter;
-
         }
     }
 

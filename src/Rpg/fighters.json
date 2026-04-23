@@ -1,16 +1,18 @@
 {
   "naruto" : {
     "name" : "naruto",
-    "defense" : 15,
-    "attack" : 25,
+    "defense" : 12,
+    "attack" : 20,
     "health" : 150,
+    "speed" : 8,
     "alive" : true
   },
   "sasuke" : {
     "name" : "sasuke",
-    "defense" : 15,
-    "attack" : 25,
-    "health" : 100,
+    "defense" : 12,
+    "attack" : 23,
+    "health" : 110,
+    "speed" : 7,
     "alive" : true
   }
 }
