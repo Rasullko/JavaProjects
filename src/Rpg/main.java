@@ -10,12 +10,28 @@ public class main {
         System.out.println("Choose the second fighter: ");
         Fighter fighter2 = roster.getOrCreate(sc);
         System.out.println("FIGHT!");
-        while(fighter1.isAlive() && fighter2.isAlive()){
-            fighter2.takeDamage(fighter1.getAttack());
-            if(!fighter2.isAlive()){
+        //deciding who attacks first based on their speed and luck
+        Fighter attacker;
+        Fighter defender;
+        int f1First = fighter1.firstAttack();
+        int f2First = fighter2.firstAttack();
+        if(f1First >= f2First){
+            attacker = fighter1;
+            defender = fighter2;
+        }
+        else{
+            attacker = fighter2;
+            defender = fighter1;
+        }
+        System.out.println(attacker.getName() + " starts!");
+        while(attacker.isAlive() && defender.isAlive()){
+            defender.takeDamage(attacker.getAttack());
+            if(!defender.isAlive()){
                 break;
             }
-            fighter1.takeDamage(fighter2.getAttack());
+           Fighter temp = attacker;
+            attacker = defender;
+            defender = temp;
         }
         if(fighter1.isAlive()){
             System.out.println(fighter1.getName() + " won!");

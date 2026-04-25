@@ -34,14 +34,17 @@ public class Fighter {
             Thread.currentThread().interrupt();
         }
     }
+    public int firstAttack(){
+        return this.speed + new Random().nextInt(11);
+    }
     public void takeDamage(int damage) {
         int actualDamage = damage - (this.defense / 2);
         int dodgeAttack = chance.nextInt(101);
         dodgeAttack *= speed;
         int critChance = chance.nextInt(101);
         critChance *= luck;
-        if (actualDamage < 0 || dodgeAttack >= 380) actualDamage = 0;
-        else if(critChance >= 400) actualDamage *=2;
+        if (actualDamage < 0 || dodgeAttack >= 410) actualDamage = 0;
+        else if(critChance >= 420) actualDamage *=2;
         this.health -= actualDamage;
         if (this.health < 0) this.health = 0;
         if (actualDamage == 0) {
