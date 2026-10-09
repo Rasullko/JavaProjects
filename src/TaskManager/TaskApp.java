@@ -17,8 +17,17 @@ public class TaskApp {
                 System.out.println("2. Show tasks");
                 System.out.println("3. Complete task");
                 System.out.println("4. Remove task");
-                System.out.println("5. Exit");
-                int choice = sc.nextInt();
+                System.out.println("5. Show completed tasks");
+                System.out.println("6. Exit");
+                int choice = -1;
+                String input = sc.nextLine();
+                try{
+                    choice = Integer.parseInt(input);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Invalid input. Please enter one of the number displayed on the screen");
+                    continue;
+                }
                 switch(choice){
                     case 1:
                         addTasks();
@@ -27,13 +36,19 @@ public class TaskApp {
                         manager.showTask();
                         break;
                     case 3:
+
                         completeTasks();
                         break;
                     case 4:
+
                         removeTasks();
                         break;
                     case 5:
+                        manager.showCompleted();
+                        break;
+                    case 6:
                         System.out.println("Bye!");
+                        manager.saveToFile();
                         return;
                     default:
                         System.out.println("Invalid option");
@@ -52,12 +67,26 @@ public class TaskApp {
         private void completeTasks(){
         System.out.println("Which task you want to complete?(enter id): ");
         manager.showTask();
-        int id = sc.nextInt();
-        manager.completeTask(id);
+        String input = sc.nextLine();
+        try{
+            int id = Integer.parseInt(input);
+            manager.completeTask(id);
+        }
+        catch(NumberFormatException e){
+            System.out.println("Invalid ID");
+        }
+
         }
         private void removeTasks(){
         System.out.println("Which task you want to remove?(enter id):");
-        int id = sc.nextInt();
-        manager.removeTask(id);
+        manager.showTask();
+        String input = sc.nextLine();
+        try{
+            int id = Integer.parseInt(input);
+            manager.removeTask(id);
+        }
+        catch(NumberFormatException e){
+            System.out.println("Invalid ID");
+        }
         }
 }
